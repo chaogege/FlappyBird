@@ -32,8 +32,11 @@ public class BirdMovement : MonoBehaviour {
 			if(rigidbody2D.velocity.y < flapSpeed)
 				rigidbody2D.AddForce(Vector2.up * flapSpeed);
 		}
-		if(rigidbody2D.velocity.y > 0){
+		if(rigidbody2D.velocity.y == 0){
 			transform.rotation = Quaternion.Euler (0,0,0);
+		}else if(rigidbody2D.velocity.y > 0) {
+			float angle = Mathf.Lerp (0, 25, rigidbody2D.velocity.y / 4f);
+			transform.rotation = Quaternion.Euler (0,0,angle);
 		}else{
 			float angle = Mathf.Lerp (0, -90, -rigidbody2D.velocity.y / 4f);
 			transform.rotation = Quaternion.Euler (0,0,angle);
